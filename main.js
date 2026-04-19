@@ -258,17 +258,7 @@ function renderWaterfall(category, containerId, baseFolder) {
 }
 
 /**
- * 根据屏幕宽度计算瀑布流列数
- */
-function getWaterfallColumns() {
-    const width = window.innerWidth;
-    if (width <= 600) return 2;
-    if (width <= 900) return 3;
-    return 4;
-}
-
-/**
- * 将图片列表分配到多列，构建瀑布流 DOM 结构（高度优先的最短列分配）
+ * 将图片列表分配到多列，构建瀑布流 DOM 结构（使用 CSS columns 实现响应式）
  * @param {string[]} urls - 有效图片 URL 数组
  * @param {HTMLElement} container - 目标容器
  */
@@ -292,20 +282,7 @@ function buildWaterfall(urls, container) {
         lightboxAd: '灯箱广告', displayStand: '展示架', holiday: '节日海报', 'solar-term': '节气海报'
     };
 
-    // 根据屏幕宽度获取列数
-    const columnCount = getWaterfallColumns();
-
-    // 创建多列容器
-    const columns = Array.from({ length: columnCount }, () => {
-        const col = document.createElement('div');
-        col.className = 'waterfall-column';
-        container.appendChild(col);
-        return col;
-    });
-    // 记录每列当前累计高度
-    const columnHeights = new Array(columnCount).fill(0);
-
-    // 依次加载图片，插入最短列
+    // 直接创建所有瀑布流项，CSS columns 会自动处理分列
     urls.forEach((url, index) => {
         const item = document.createElement('div');
         item.className = 'waterfall-item';
@@ -316,29 +293,8 @@ function buildWaterfall(urls, container) {
         img.loading = 'lazy';
 
         item.appendChild(img);
-
-        // 等图片加载完毕后，插入到最短列并更新高度
-        if (img.complete) {
-            item.classList.add('loaded');
-            insertIntoShortestColumn(item, columnHeights, columns);
-        } else {
-            img.addEventListener('load', () => {
-                item.classList.add('loaded');
-                insertIntoShortestColumn(item, columnHeights, columns);
-            });
-            // 加载失败时也插入，避免永久挂起
-            img.addEventListener('error', () => insertIntoShortestColumn(item, columnHeights, columns));
-        }
+        container.appendChild(item);
     });
-}
-
-/**
- * 将 item 插入到当前累计高度最短的列
- */
-function insertIntoShortestColumn(item, columnHeights, columns) {
-    const shortestIdx = columnHeights.indexOf(Math.min(...columnHeights));
-    columns[shortestIdx].appendChild(item);
-    columnHeights[shortestIdx] += item.offsetHeight || 200;
 }
 
 /**
@@ -387,17 +343,6 @@ function initWaterfall() {
     if (subPageMap[page]) {
         subPageMap[page].forEach(({ category, containerId, baseFolder }) => {
             renderWaterfall(category, containerId, baseFolder);
-        });
-
-        // 监听窗口大小变化，重新渲染瀑布流
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                subPageMap[page].forEach(({ category, containerId, baseFolder }) => {
-                    renderWaterfall(category, containerId, baseFolder);
-                });
-            }, 250);
         });
         return;
     }
