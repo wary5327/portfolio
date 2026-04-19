@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="电商设计作品 - 王成设计作品集">
+    <title>电商设计 - WangCheng</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ========== 顶部导航栏 ========== -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="logo"><img src="images/wangzhan.png" alt="WangCheng"></a>
+            <button class="nav-hamburger" id="navHamburger" aria-label="打开菜单" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="nav-overlay" id="navOverlay">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-home">首页</a></li>
+                    <li><a href="about.html" class="nav-about">个人简介</a></li>
+                    <li><a href="typography.html">视觉设计</a></li>
+                    <li><a href="brand.html">品牌设计</a></li>
+                    <li><a href="packaging.html">包装设计</a></li>
+                    <li><a href="ecommerce.html">电商设计</a></li>
+                    <li><a href="digital.html">数字媒体</a></li>
+                    <li><a href="illustration.html">插画图形</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="nav-mask" id="navMask"></div>
+
+    <!-- 二级导航 -->
+    <nav class="category-sub-nav container">
+        <a href="first-image.html">主图</a>
+        <a href="detail.html">详情页</a>
+        <a href="banner.html">Banner</a>
+    </nav>
+
+    <main class="main-content">
+        <!-- 顶部文字装饰 -->
+        <div class="top-decor-text">
+            <div class="decor-en">E-COMMERCE DESIGN</div>
+            <h1 class="decor-title">电商设计</h1>
+            <div class="decor-keywords">电商视觉 / 营销设计 / 转化优化</div>
+        </div>
+
+        <!-- 三大子分类封面卡片 -->
+        <section class="category-sub-section">
+            <div class="container">
+                <div class="category-cards-grid">
+                    <a href="first-image.html" class="category-sub-card">
+                        <div class="category-sub-card-image">
+                            <img src="images/ecommerce/cover/first-image-cover.jpg" alt="首图" loading="lazy">
+                        </div>
+                        <div class="category-sub-card-body">
+                            <h2 class="category-sub-card-title">首图</h2>
+                        </div>
+                    </a>
+                    <a href="detail.html" class="category-sub-card">
+                        <div class="category-sub-card-image">
+                            <img src="images/ecommerce/cover/detail-cover.jpg" alt="详情页" loading="lazy">
+                        </div>
+                        <div class="category-sub-card-body">
+                            <h2 class="category-sub-card-title">详情页</h2>
+                        </div>
+                    </a>
+                    <a href="banner.html" class="category-sub-card">
+                        <div class="category-sub-card-image">
+                            <img src="images/ecommerce/cover/banner-cover.jpg" alt="Banner" loading="lazy">
+                        </div>
+                        <div class="category-sub-card-body">
+                            <h2 class="category-sub-card-title">Banner</h2>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 作品展示区（瀑布流布局） -->
+        <section class="category-page-section">
+            <div class="container">
+                <div class="waterfall-container" id="ecommerceGrid">
+                    <!-- 由 main.js 渲染 -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 WangCheng. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 图片放大弹窗 -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <div class="lightbox-controls">
+            <button class="lightbox-ctrl-btn" id="lightboxZoomIn" title="放大">+</button>
+            <button class="lightbox-ctrl-btn" id="lightboxZoomOut" title="缩小">−</button>
+            <button class="lightbox-ctrl-btn" id="lightboxReset" title="重置">⟳</button>
+        </div>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

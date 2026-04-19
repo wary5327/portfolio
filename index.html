@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="王城视觉设计工作室 - 专业提供海报、VI、包装、电商等视觉设计服务">
+    <title>WangCheng - 王城视觉设计</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="logo"><img src="images/wangzhan.png" alt="WangCheng"></a>
+            <button class="nav-hamburger" id="navHamburger" aria-label="打开菜单" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="nav-overlay" id="navOverlay">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-home">首页</a></li>
+                    <li><a href="about.html" class="nav-about">个人简介</a></li>
+                    <li><a href="typography.html">视觉设计</a></li>
+                    <li><a href="brand.html">品牌设计</a></li>
+                    <li><a href="packaging.html">包装设计</a></li>
+                    <li><a href="ecommerce.html">电商设计</a></li>
+                    <li><a href="digital.html">数字媒体</a></li>
+                    <li><a href="illustration.html">插画图形</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="nav-mask" id="navMask"></div>
+
+    <div class="top-banner">
+        <img src="images/hero-bg.jpg" alt="" loading="eager">
+    </div>
+
+    <section class="carousel-section">
+        <div class="container">
+            <div class="carousel-wrap" id="carouselWrap">
+                <div class="carousel-track" id="carouselTrack">
+                    <img src="images/carousel/carousel-1.jpg" alt="轮播图1" loading="lazy">
+                    <img src="images/carousel/carousel-2.jpg" alt="轮播图2" loading="lazy">
+                    <img src="images/carousel/carousel-3.jpg" alt="轮播图3" loading="lazy">
+                    <img src="images/carousel/carousel-4.jpg" alt="轮播图4" loading="lazy">
+                </div>
+                <button class="carousel-btn carousel-btn-prev" id="carouselPrev" aria-label="上一张"><</button>
+                <button class="carousel-btn carousel-btn-next" id="carouselNext" aria-label="下一张">></button>
+                <div class="carousel-dots" id="carouselDots"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories-section">
+        <div class="container">
+            <div class="categories-grid">
+                <a href="typography.html" class="category-card">
+                    <div class="category-card-image">
+                        <img src="images/index/index-1.jpg" alt="视觉设计" loading="lazy">
+                    </div>
+                    <div class="category-card-body">
+                        <h2 class="category-card-title">视觉设计</h2>
+                    </div>
+                </a>
+                <a href="brand.html" class="category-card">
+                    <div class="category-card-image">
+                        <img src="images/index/index-2.jpg" alt="品牌设计" loading="lazy">
+                    </div>
+                    <div class="category-card-body">
+                        <h2 class="category-card-title">品牌设计</h2>
+                    </div>
+                </a>
+                <a href="packaging.html" class="category-card">
+                    <div class="category-card-image">
+                        <img src="images/index/index-3.jpg" alt="包装设计" loading="lazy">
+                    </div>
+                    <div class="category-card-body">
+                        <h2 class="category-card-title">包装设计</h2>
+                    </div>
+                </a>
+                <a href="ecommerce.html" class="category-card">
+                    <div class="category-card-image">
+                        <img src="images/index/index-4.jpg" alt="电商设计" loading="lazy">
+                    </div>
+                    <div class="category-card-body">
+                        <h2 class="category-card-title">电商设计</h2>
+                    </div>
+                </a>
+                <a href="digital.html" class="category-card">
+                    <div class="category-card-image">
+                        <img src="images/index/index-5.jpg" alt="数字媒体" loading="lazy">
+                    </div>
+                    <div class="category-card-body">
+                        <h2 class="category-card-title">数字媒体</h2>
+                    </div>
+                </a>
+                <a href="illustration.html" class="category-card">
+                    <div class="category-card-image">
+                        <img src="images/index/index-6.jpg" alt="插画图形" loading="lazy">
+                    </div>
+                    <div class="category-card-body">
+                        <h2 class="category-card-title">插画图形</h2>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>2026 WangCheng. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightboxClose">x</span>
+        <div class="lightbox-controls">
+            <button class="lightbox-ctrl-btn" id="lightboxZoomIn" title="放大">+</button>
+            <button class="lightbox-ctrl-btn" id="lightboxZoomOut" title="缩小">-</button>
+            <button class="lightbox-ctrl-btn" id="lightboxReset" title="重置">0</button>
+        </div>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
