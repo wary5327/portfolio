@@ -1646,7 +1646,7 @@ img {
     }
 
     .waterfall-column {
-        flex: 0 0 calc(50% - 8px);
+        flex: 0 0 calc(33.333% - 11px);
     }
 }
 
@@ -1668,7 +1668,7 @@ img {
     }
 
     .waterfall-column {
-        flex: 0 0 100%;
+        flex: 0 0 calc(33.333% - 11px);
     }
 }
 
