@@ -1105,6 +1105,7 @@ img {
    ============================================ */
 .subpage-hero {
     height: 280px;
+    background-color: #e8e8e8;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1192,6 +1193,18 @@ img {
     position: relative;
     background: #f0f0f0;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 150px;
+}
+
+.waterfall-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+    z-index: 0;
 }
 
 .waterfall-item:hover {
@@ -1204,6 +1217,14 @@ img {
     height: auto;
     display: block;
     object-fit: cover;
+    transition: opacity 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.waterfall-item img:not([src]),
+.waterfall-item img[src=""] {
+    opacity: 0;
 }
 
 /* ============================================

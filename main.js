@@ -216,16 +216,14 @@ function renderWaterfall(category, containerId, baseFolder) {
     if (!container) return;
 
     const folder = baseFolder || `images/typography/${category}/`;
-    const maxCount = 30; // 最大扫描数量上限
+    const maxCount = 30;
 
-    // 生成图片 URL 列表（命名格式：poster-1、layout-2 等）
     const urls = [];
     for (let i = 1; i <= maxCount; i++) {
         const url = `${folder}${category}-${i}.jpg`;
         urls.push(url);
     }
 
-    // 按顺序预加载检测图片是否真实存在
     const validUrls = [];
     let checked = 0;
 
@@ -238,13 +236,22 @@ function renderWaterfall(category, containerId, baseFolder) {
         });
     }
 
+    // 超时保护：3秒后无论检查到哪都渲染已加载的图片
+    const timeoutId = setTimeout(() => {
+        if (validUrls.length > 0) {
+            buildWaterfall(validUrls, container);
+        }
+    }, 3000);
+
     (async () => {
         for (const url of urls) {
             const result = await checkAndCollect(url);
             if (result) validUrls.push(result);
             checked++;
             if (checked === maxCount) {
+                clearTimeout(timeoutId);
                 buildWaterfall(validUrls, container);
+                return;
             }
         }
     })();
@@ -299,9 +306,13 @@ function buildWaterfall(urls, container) {
 
         // 等图片加载完毕后，插入到最短列并更新高度
         if (img.complete) {
+            item.classList.add('loaded');
             insertIntoShortestColumn(item, columnHeights, columns);
         } else {
-            img.addEventListener('load', () => insertIntoShortestColumn(item, columnHeights, columns));
+            img.addEventListener('load', () => {
+                item.classList.add('loaded');
+                insertIntoShortestColumn(item, columnHeights, columns);
+            });
             // 加载失败时也插入，避免永久挂起
             img.addEventListener('error', () => insertIntoShortestColumn(item, columnHeights, columns));
         }
