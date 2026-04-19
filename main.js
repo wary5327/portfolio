@@ -258,7 +258,17 @@ function renderWaterfall(category, containerId, baseFolder) {
 }
 
 /**
- * 将图片列表分配到四列，构建瀑布流 DOM 结构（高度优先的最短列分配）
+ * 根据屏幕宽度计算瀑布流列数
+ */
+function getWaterfallColumns() {
+    const width = window.innerWidth;
+    if (width <= 600) return 2;
+    if (width <= 900) return 3;
+    return 4;
+}
+
+/**
+ * 将图片列表分配到多列，构建瀑布流 DOM 结构（高度优先的最短列分配）
  * @param {string[]} urls - 有效图片 URL 数组
  * @param {HTMLElement} container - 目标容器
  */
@@ -282,15 +292,18 @@ function buildWaterfall(urls, container) {
         lightboxAd: '灯箱广告', displayStand: '展示架', holiday: '节日海报', 'solar-term': '节气海报'
     };
 
-    // 创建四列容器
-    const columns = Array.from({ length: 4 }, () => {
+    // 根据屏幕宽度获取列数
+    const columnCount = getWaterfallColumns();
+
+    // 创建多列容器
+    const columns = Array.from({ length: columnCount }, () => {
         const col = document.createElement('div');
         col.className = 'waterfall-column';
         container.appendChild(col);
         return col;
     });
     // 记录每列当前累计高度
-    const columnHeights = [0, 0, 0, 0];
+    const columnHeights = new Array(columnCount).fill(0);
 
     // 依次加载图片，插入最短列
     urls.forEach((url, index) => {
@@ -374,6 +387,17 @@ function initWaterfall() {
     if (subPageMap[page]) {
         subPageMap[page].forEach(({ category, containerId, baseFolder }) => {
             renderWaterfall(category, containerId, baseFolder);
+        });
+
+        // 监听窗口大小变化，重新渲染瀑布流
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                subPageMap[page].forEach(({ category, containerId, baseFolder }) => {
+                    renderWaterfall(category, containerId, baseFolder);
+                });
+            }, 250);
         });
         return;
     }
